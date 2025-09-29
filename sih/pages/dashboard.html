@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management | EnergyGrid Pro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>EnergyGrid Pro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="dashboard.html" class="active"><i class="fas fa-solar-panel"></i> Assets</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Data History</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Asset Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="../assets/user-avatar.png" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Asset Management Content -->
+            <div class="dashboard-content">
+                <div class="configuration-section">
+                    <h2>Configure Your Energy Assets</h2>
+                    
+                    <div class="config-cards">
+                        <div class="config-card">
+                            <h3><i class="fas fa-solar-panel"></i> Solar Farm Configuration</h3>
+                            <div class="input-group">
+                                <label>Number of Solar Panels</label>
+                                <input type="number" id="solarCount" value="25" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Wattage per Panel</label>
+                                <select id="solarWattage">
+                                    <option value="300">300W</option>
+                                    <option value="400">400W</option>
+                                    <option value="500" selected>500W</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="input-group" id="customWattageGroup" style="display: none;">
+                                <label>Custom Wattage (W)</label>
+                                <input type="number" id="customWattage" placeholder="Enter custom wattage">
+                            </div>
+                            <div class="input-group">
+                                <label>Total Surface Area (m²)</label>
+                                <input type="number" id="solarArea" value="65" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>Panel Efficiency (%)</label>
+                                <input type="number" id="solarEfficiency" value="21.5" step="0.1" min="1" max="100">
+                            </div>
+                            <div class="calculated">
+                                <strong>Total Capacity: <span id="solarCapacity">12.5</span> kW</strong><br>
+                                <small>Estimated Annual Production: <span id="annualSolar">18,250</span> kWh</small>
+                            </div>
+                            <button class="save-btn" onclick="saveSolarConfig()">Save Configuration</button>
+                        </div>
+
+                        <div class="config-card">
+                            <h3><i class="fas fa-wind"></i> Wind Farm Configuration</h3>
+                            <div class="input-group">
+                                <label>Number of Wind Turbines</label>
+                                <input type="number" id="windCount" value="2" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Rated Capacity per Turbine (kW)</label>
+                                <input type="number" id="windCapacity" value="5" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>Rotor Diameter (m)</label>
+                                <input type="number" id="rotorDiameter" value="4.5" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>Tower Height (m)</label>
+                                <input type="number" id="towerHeight" value="12" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>Cut-in Wind Speed (m/s)</label>
+                                <input type="number" id="cutInSpeed" value="3.0" step="0.1">
+                            </div>
+                            <div class="calculated">
+                                <strong>Total Capacity: <span id="windTotalCapacity">10</span> kW</strong><br>
+                                <small>Estimated Annual Production: <span id="annualWind">8,760</span> kWh</small>
+                            </div>
+                            <button class="save-btn" onclick="saveWindConfig()">Save Configuration</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asset Summary -->
+                <div class="realtime-section">
+                    <h2>Asset Summary</h2>
+                    <div class="asset-summary">
+                        <div class="summary-card">
+                            <h3>Solar Assets</h3>
+                            <div class="summary-content">
+                                <div class="summary-item">
+                                    <span>Total Panels:</span>
+                                    <strong id="summarySolarCount">25</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Total Capacity:</span>
+                                    <strong id="summarySolarCapacity">12.5 kW</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Surface Area:</span>
+                                    <strong id="summarySolarArea">65 m²</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Efficiency:</span>
+                                    <strong id="summarySolarEfficiency">21.5%</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <h3>Wind Assets</h3>
+                            <div class="summary-content">
+                                <div class="summary-item">
+                                    <span>Total Turbines:</span>
+                                    <strong id="summaryWindCount">2</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Total Capacity:</span>
+                                    <strong id="summaryWindCapacity">10 kW</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Rotor Diameter:</span>
+                                    <strong id="summaryRotorDiameter">4.5 m</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Tower Height:</span>
+                                    <strong id="summaryTowerHeight">12 m</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <h3>System Overview</h3>
+                            <div class="summary-content">
+                                <div class="summary-item">
+                                    <span>Total Renewable Capacity:</span>
+                                    <strong id="totalCapacity">22.5 kW</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Estimated Annual Production:</span>
+                                    <strong id="totalAnnual">27,010 kWh</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>CO₂ Reduction (annual):</span>
+                                    <strong id="co2Reduction">12.8 tons</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Estimated Savings (annual):</span>
+                                    <strong id="annualSavings">$3,241</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/dashboard.js"></script>
+</body>
+</html>

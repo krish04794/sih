@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data History | EnergyGrid Pro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>EnergyGrid Pro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-solar-panel"></i> Assets</a></li>
+                <li><a href="data-history.html" class="active"><i class="fas fa-history"></i> Data History</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Data History</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="../assets/user-avatar.png" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Data History Content -->
+            <div class="dashboard-content">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="dateRange">Date Range</label>
+                        <input type="date" id="dateRange"/>
+                    </div>
+                    <div class="filter-group">
+                        <label for="assetType">Asset Type</label>
+                        <select id="assetType">
+                            <option value="all">All Assets</option>
+                            <option value="solar">Solar</option>
+                            <option value="wind">Wind</option>
+                            <option value="battery">Battery</option>
+                        </select>
+                    </div>
+                    <button class="export-btn" onclick="exportData('csv')"><i class="fas fa-file-csv"></i> Export CSV</button>
+                </div>
+
+                <div class="data-history-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Asset</th>
+                                <th>Value</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/data-history.js"></script>
+</body>
+</html>

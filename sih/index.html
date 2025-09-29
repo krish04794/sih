@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergyGrid Pro | Smart Energy Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>EnergyGrid Pro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="pages/dashboard.html"><i class="fas fa-solar-panel"></i> Assets</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Data History</a></li>
+                <li><a href="pages/profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="pages/settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/user-avatar.png" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- System Status -->
+                <div class="status-cards">
+                    <div class="status-card">
+                        <div class="card-icon solar">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Solar Production</h3>
+                            <span class="value">4.2 kW</span>
+                            <span class="status active">Active</span>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="card-icon wind">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Wind Production</h3>
+                            <span class="value">1.8 kW</span>
+                            <span class="status active">Active</span>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="card-icon battery">
+                            <i class="fas fa-battery-half"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Battery Storage</h3>
+                            <span class="value">78%</span>
+                            <span class="status charging">Charging</span>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="card-icon grid">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Grid Status</h3>
+                            <span class="value">Importing</span>
+                            <span class="status">0.5 kW</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asset Configuration -->
+                <div class="configuration-section">
+                    <h2>Asset Configuration</h2>
+                    <div class="config-cards">
+                        <div class="config-card">
+                            <h3><i class="fas fa-solar-panel"></i> Solar Configuration</h3>
+                            <div class="input-group">
+                                <label>Number of Panels</label>
+                                <input type="number" id="solarCount" value="25" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Wattage per Panel</label>
+                                <select id="solarWattage">
+                                    <option value="300">300W</option>
+                                    <option value="400">400W</option>
+                                    <option value="500" selected>500W</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Total Area (m²)</label>
+                                <input type="number" id="solarArea" value="65" step="0.1">
+                            </div>
+                            <div class="calculated">
+                                <strong>Total Capacity: <span id="solarCapacity">12.5</span> kW</strong>
+                            </div>
+                        </div>
+
+                        <div class="config-card">
+                            <h3><i class="fas fa-wind"></i> Wind Configuration</h3>
+                            <div class="input-group">
+                                <label>Number of Turbines</label>
+                                <input type="number" id="windCount" value="2" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Rated Capacity (kW)</label>
+                                <input type="number" id="windCapacity" value="5" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>Rotor Diameter (m)</label>
+                                <input type="number" id="rotorDiameter" value="4.5" step="0.1">
+                            </div>
+                            <div class="calculated">
+                                <strong>Total Capacity: <span id="windTotalCapacity">10</span> kW</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Data -->
+                <div class="realtime-section">
+                    <h2>Real-time Monitoring <span class="live-badge">Live</span></h2>
+                    <div class="realtime-grid">
+                        <div class="energy-flow">
+                            <h3>Energy Flow Diagram</h3>
+                            <div class="flow-diagram">
+                                <!-- Energy flow visualization will be rendered by JavaScript -->
+                                <div id="flowDiagram"></div>
+                            </div>
+                        </div>
+                        <div class="equipment-status">
+                            <h3>Equipment Status</h3>
+                            <div class="status-list">
+                                <div class="equipment-item">
+                                    <span class="eq-name">Solar Inverter #1</span>
+                                    <span class="status-badge online">ONLINE</span>
+                                    <span class="uptime">8h 24m</span>
+                                </div>
+                                <div class="equipment-item">
+                                    <span class="eq-name">Wind Turbine #1</span>
+                                    <span class="status-badge online">ONLINE</span>
+                                    <span class="uptime">6h 45m</span>
+                                </div>
+                                <div class="equipment-item">
+                                    <span class="eq-name">Battery Controller</span>
+                                    <span class="status-badge online">ONLINE</span>
+                                    <span class="uptime">12h 15m</span>
+                                </div>
+                                <div class="equipment-item">
+                                    <span class="eq-name">Smart Meter</span>
+                                    <span class="status-badge online">ONLINE</span>
+                                    <span class="uptime">24h 02m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Charts -->
+                <div class="charts-section">
+                    <div class="charts-header">
+                        <h2>Performance Analytics</h2>
+                        <div class="chart-filter">
+                            <select id="chartTimeRange">
+                                <option value="today">Today</option>
+                                <option value="7days">Last 7 Days</option>
+                                <option value="30days">Last 30 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <canvas id="productionChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="efficiencyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script src="scripts/smart-meter.js"></script>
+</body>
+</html>

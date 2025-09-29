@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings | EnergyGrid Pro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>EnergyGrid Pro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-solar-panel"></i> Assets</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Data History</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>System Settings</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">0</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="../assets/user-avatar.png" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Settings Content -->
+            <div class="dashboard-content">
+                <div class="settings-container">
+                    <!-- Settings Tabs -->
+                    <div class="settings-tabs">
+                        <button class="tab-btn active" onclick="openTab('general')">General</button>
+                        <button class="tab-btn" onclick="openTab('api')">API Integration</button>
+                        <button class="tab-btn" onclick="openTab('alerts')">Alerts & Notifications</button>
+                        <button class="tab-btn" onclick="openTab('billing')">Billing & Tariffs</button>
+                        <button class="tab-btn" onclick="openTab('system')">System</button>
+                    </div>
+
+                    <!-- General Settings -->
+                    <div id="general" class="tab-content active">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-cog"></i> General Settings</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="systemName">System Name</label>
+                                    <input type="text" id="systemName" value="EnergyGrid Pro System">
+                                </div>
+                                <div class="form-group">
+                                    <label for="systemLocation">System Location</label>
+                                    <input type="text" id="systemLocation" value="New York, USA">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="currency">Currency</label>
+                                    <select id="currency">
+                                        <option value="USD" selected>US Dollar ($)</option>
+                                        <option value="EUR">Euro (€)</option>
+                                        <option value="GBP">British Pound (£)</option>
+                                        <option value="CAD">Canadian Dollar (C$)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="units">Measurement Units</label>
+                                    <select id="units">
+                                        <option value="metric" selected>Metric (kW, kWh)</option>
+                                        <option value="imperial">Imperial (HP, BTU)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveGeneralSettings()">Save General Settings</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3><i class="fas fa-palette"></i> Display Settings</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="theme">Theme</label>
+                                    <select id="theme">
+                                        <option value="light" selected>Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="auto">Auto (System)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chartStyle">Chart Style</label>
+                                    <select id="chartStyle">
+                                        <option value="smooth" selected>Smooth Lines</option>
+                                        <option value="sharp">Sharp Lines</option>
+                                        <option value="gradient">Gradient Fill</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dataRefresh">Data Refresh Rate</label>
+                                    <select id="dataRefresh">
+                                        <option value="5000">5 seconds</option>
+                                        <option value="10000" selected>10 seconds</option>
+                                        <option value="30000">30 seconds</option>
+                                        <option value="60000">1 minute</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="autoLogout">Auto Logout</label>
+                                    <select id="autoLogout">
+                                        <option value="15">15 minutes</option>
+                                        <option value="30" selected>30 minutes</option>
+                                        <option value="60">1 hour</option>
+                                        <option value="0">Never</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveDisplaySettings()">Save Display Settings</button>
+                        </div>
+                    </div>
+
+                    <!-- API Integration -->
+                    <div id="api" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-plug"></i> API Integration</h3>
+                            <div class="form-group">
+                                <label for="emoncmsKey">EMONCMS API Key</label>
+                                <div class="api-key-input">
+                                    <input type="password" id="emoncmsKey" placeholder="Enter your EMONCMS API key" value="demo">
+                                    <button onclick="toggleApiKey('emoncmsKey')"><i class="fas fa-eye"></i></button>
+                                </div>
+                                <small>Use "demo" for demonstration purposes</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="weatherKey">OpenWeatherMap API Key</label>
+                                <div class="api-key-input">
+                                    <input type="password" id="weatherKey" placeholder="Enter your OpenWeatherMap API key">
+                                    <button onclick="toggleApiKey('weatherKey')"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="simulationMode">Data Source</label>
+                                <select id="simulationMode">
+                                    <option value="auto" selected>Auto Simulation</option>
+                                    <option value="api">Use External APIs</option>
+                                    <option value="manual">Manual Input</option>
+                                </select>
+                            </div>
+                            <button class="save-btn" onclick="saveApiSettings()">Save API Settings</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3><i class="fas fa-sync-alt"></i> Data Synchronization</h3>
+                            <div class="sync-status">
+                                <div class="sync-item">
+                                    <span>EMONCMS Connection:</span>
+                                    <span class="status-badge online">Connected</span>
+                                </div>
+                                <div class="sync-item">
+                                    <span>Weather API:</span>
+                                    <span class="status-badge offline">Not Configured</span>
+                                </div>
+                                <div class="sync-item">
+                                    <span>Last Data Sync:</span>
+                                    <span id="lastSync">2 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="sync-actions">
+                                <button class="sync-btn" onclick="testEmoncmsConnection()">
+                                    <i class="fas fa-test"></i> Test EMONCMS
+                                </button>
+                                <button class="sync-btn" onclick="syncNow()">
+                                    <i class="fas fa-sync"></i> Sync Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alerts & Notifications -->
+                    <div id="alerts" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-bell"></i> Alert Thresholds</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="batteryLow">Battery Low Level (%)</label>
+                                    <input type="number" id="batteryLow" value="20" min="5" max="50">
+                                </div>
+                                <div class="form-group">
+                                    <label for="batteryHigh">Battery High Level (%)</label>
+                                    <input type="number" id="batteryHigh" value="90" min="50" max="100">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="gridImportLimit">Grid Import Limit (kW)</label>
+                                    <input type="number" id="gridImportLimit" value="5.0" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="efficiencyThreshold">Efficiency Threshold (%)</label>
+                                    <input type="number" id="efficiencyThreshold" value="80" min="50" max="100">
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveAlertThresholds()">Save Alert Settings</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3><i class="fas fa-envelope"></i> Notification Channels</h3>
+                            <div class="notification-channels">
+                                <div class="channel-item">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <label for="emailNotifications">Email Notifications</label>
+                                    <input type="email" id="notificationEmail" value="john.doe@energygrid.com" placeholder="Notification email">
+                                </div>
+                                <div class="channel-item">
+                                    <input type="checkbox" id="pushNotifications" checked>
+                                    <label for="pushNotifications">Push Notifications</label>
+                                </div>
+                                <div class="channel-item">
+                                    <input type="checkbox" id="smsNotifications">
+                                    <label for="smsNotifications">SMS Notifications</label>
+                                    <input type="tel" id="smsNumber" placeholder="Phone number for SMS">
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveNotificationSettings()">Save Notification Settings</button>
+                        </div>
+                    </div>
+
+                    <!-- Billing & Tariffs -->
+                    <div id="billing" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-money-bill-wave"></i> Electricity Tariffs</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="importTariff">Grid Import Rate ($/kWh)</label>
+                                    <input type="number" id="importTariff" value="0.15" step="0.01" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exportTariff">Grid Export Rate ($/kWh)</label>
+                                    <input type="number" id="exportTariff" value="0.08" step="0.01" min="0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Time-of-Use Rates</label>
+                                <div class="tou-rates">
+                                    <div class="tou-rate">
+                                        <span>Off-Peak (10 PM - 6 AM):</span>
+                                        <input type="number" value="0.12" step="0.01">
+                                    </div>
+                                    <div class="tou-rate">
+                                        <span>Standard (6 AM - 4 PM):</span>
+                                        <input type="number" value="0.15" step="0.01">
+                                    </div>
+                                    <div class="tou-rate">
+                                        <span>Peak (4 PM - 10 PM):</span>
+                                        <input type="number" value="0.20" step="0.01">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveTariffSettings()">Save Tariff Settings</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3><i class="fas fa-file-invoice-dollar"></i> Billing Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="billingCycle">Billing Cycle</label>
+                                    <select id="billingCycle">
+                                        <option value="monthly" selected>Monthly</option>
+                                        <option value="quarterly">Quarterly</option>
+                                        <option value="annually">Annually</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="billingDate">Billing Date</label>
+                                    <input type="number" id="billingDate" value="1" min="1" max="28">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="utilityProvider">Utility Provider</label>
+                                <input type="text" id="utilityProvider" value="Local Power Company">
+                            </div>
+                            <button class="save-btn" onclick="saveBillingSettings()">Save Billing Settings</button>
+                        </div>
+                    </div>
+
+                    <!-- System Settings -->
+                    <div id="system" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-database"></i> Data Management</h3>
+                            <div class="data-management">
+                                <div class="data-info">
+                                    <p>Current Data Storage: <strong>2.4 MB</strong></p>
+                                    <p>Historical Records: <strong>1,247 entries</strong></p>
+                                    <p>Data Retention: <strong>365 days</strong></p>
+                                </div>
+                                <div class="data-actions">
+                                    <button class="data-btn" onclick="exportAllData()">
+                                        <i class="fas fa-download"></i> Export All Data
+                                    </button>
+                                    <button class="data-btn" onclick="clearOldData()">
+                                        <i class="fas fa-trash"></i> Clear Old Data
+                                    </button>
+                                    <button class="data-btn" onclick="backupSystem()">
+                                        <i class="fas fa-save"></i> Backup System
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3><i class="fas fa-shield-alt"></i> System Information</h3>
+                            <div class="system-info">
+                                <div class="info-item">
+                                    <span>Software Version:</span>
+                                    <strong>EnergyGrid Pro v2.1.0</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Last Update:</span>
+                                    <strong>2024-01-15</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>System Uptime:</span>
+                                    <strong>45 days, 12 hours</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Database Status:</span>
+                                    <strong class="status-online">Healthy</strong>
+                                </div>
+                            </div>
+                            <div class="system-actions">
+                                <button class="system-btn" onclick="checkForUpdates()">
+                                    <i class="fas fa-sync"></i> Check for Updates
+                                </button>
+                                <button class="system-btn" onclick="systemDiagnostics()">
+                                    <i class="fas fa-stethoscope"></i> Run Diagnostics
+                                </button>
+                                <button class="system-btn" onclick="restartSystem()" style="background: #e74c3c;">
+                                    <i class="fas fa-power-off"></i> Restart System
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/settings.js"></script>
+</body>
+</html>

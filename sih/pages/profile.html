@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | EnergyGrid Pro</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>EnergyGrid Pro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-solar-panel"></i> Assets</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Data History</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>User Profile</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">1</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="../assets/user-avatar.png" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Profile Content -->
+            <div class="dashboard-content">
+                <div class="profile-container">
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="avatar-upload">
+                            <img src="../assets/user-avatar.png" alt="Profile Avatar" id="profileAvatar">
+                            <div class="edit-icon" onclick="document.getElementById('avatarInput').click()">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+                        </div>
+                        <div class="profile-info">
+                            <h2>John Doe</h2>
+                            <p>System Administrator</p>
+                            <p><i class="fas fa-envelope"></i> john.doe@energygrid.com</p>
+                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <!-- Profile Form -->
+                    <div class="profile-form">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" value="John">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" value="Doe">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john.doe@energygrid.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" value="EnergyGrid Solutions Inc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Position</label>
+                                <input type="text" id="position" value="System Administrator">
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 30px;">Account Settings</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" value="johndoe">
+                            </div>
+                            <div class="form-group">
+                                <label for="language">Language</label>
+                                <select id="language">
+                                    <option value="en" selected>English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="timezone">Timezone</label>
+                                <select id="timezone">
+                                    <option value="est" selected>Eastern Time (ET)</option>
+                                    <option value="cst">Central Time (CT)</option>
+                                    <option value="mst">Mountain Time (MT)</option>
+                                    <option value="pst">Pacific Time (PT)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateFormat">Date Format</label>
+                                <select id="dateFormat">
+                                    <option value="mm/dd/yyyy" selected>MM/DD/YYYY</option>
+                                    <option value="dd/mm/yyyy">DD/MM/YYYY</option>
+                                    <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 30px;">Notification Preferences</h3>
+                        <div class="preferences">
+                            <div class="preference-item">
+                                <input type="checkbox" id="emailAlerts" checked>
+                                <label for="emailAlerts">Email alerts for system events</label>
+                            </div>
+                            <div class="preference-item">
+                                <input type="checkbox" id="maintenanceAlerts" checked>
+                                <label for="maintenanceAlerts">Maintenance reminders</label>
+                            </div>
+                            <div class="preference-item">
+                                <input type="checkbox" id="performanceReports" checked>
+                                <label for="performanceReports">Weekly performance reports</label>
+                            </div>
+                            <div class="preference-item">
+                                <input type="checkbox" id="billingAlerts">
+                                <label for="billingAlerts">Billing and payment alerts</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions" style="margin-top: 30px;">
+                            <button class="save-btn" onclick="saveProfile()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                            <button class="cancel-btn" onclick="resetForm()" style="background: #95a5a6; margin-left: 10px;">
+                                <i class="fas fa-undo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="settings-card" style="margin-top: 30px;">
+                        <h3>Security Settings</h3>
+                        <div class="security-actions">
+                            <button class="security-btn" onclick="changePassword()">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                            <button class="security-btn" onclick="enable2FA()">
+                                <i class="fas fa-shield-alt"></i> Two-Factor Authentication
+                            </button>
+                            <button class="security-btn" onclick="viewLoginHistory()">
+                                <i class="fas fa-history"></i> Login History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/profile.js"></script>
+</body>
+</html>
